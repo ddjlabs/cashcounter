@@ -1,5 +1,9 @@
 # Cash Counter
 
+![Build Status](https://github.com/ddjlabs/cashcounter/actions/workflows/release-on-main.yml/badge.svg)
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
+<!-- Add a real coverage badge if you use a coverage service like Codecov or Coveralls -->
+
 A minimal offline Electron app to count U.S. currency with printing and PDF export.
 
 - Cross-platform (Windows, macOS, Linux). Initial release focuses on Windows MSI.

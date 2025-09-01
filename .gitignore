@@ -27,3 +27,6 @@
 
 # electron-builder
 /dist
+
+# Test coverage reports
+/coverage
