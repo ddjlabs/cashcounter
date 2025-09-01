@@ -1,0 +1,29 @@
+# dependencies
+/node_modules
+
+# builds
+/build
+
+# development artifacts
+/.env
+/.env.local
+/.env.development.local
+/.env.test.local
+/.env.production.local
+
+# log files
+/logs
+
+# editor files
+/.vscode
+/.idea
+/.nvm
+/.npm
+/.yarn
+
+# misc
+/.DS_Store
+/Thumbs.db
+
+# electron-builder
+/dist
