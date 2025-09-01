@@ -1,0 +1,42 @@
+{
+  "name": "cashcounter",
+  "version": "1.0.1",
+  "description": "Cash Counting Application (Electron) - Windows-focused MVP",
+  "main": "src/main.js",
+  "author": "Doug Jenkins",
+  "url": "https://github.com/ddjlabs/cashcounter",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "test": "jest",
+    "build": "electron-builder -w msi",
+    "build:win": "electron-builder --win msi",
+    "build:icon": "node src/scripts/build-icon.js"
+  },
+  "devDependencies": {
+    "electron": "28.3.3",
+    "electron-builder": "24.13.3",
+    "jest": "29.7.0",
+    "@jest/globals": "29.7.0",
+    "png-to-ico": "^2.1.8",
+    "sharp": "0.33.4"
+  },
+  "build": {
+    "appId": "com.ddjlabs.cashcounter",
+    "productName": "cash_counter",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "icon": "src/assets/icon.ico",
+      "target": [
+        {
+          "target": "msi",
+          "arch": ["x64"]
+        }
+      ]
+    }
+  }
+}

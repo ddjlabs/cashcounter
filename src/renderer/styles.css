@@ -1,0 +1,120 @@
+/* Basic, clean calculator-like UI */
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --border: #1f2937;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #0b1222, #0f172a);
+}
+.logo { width: 28px; height: 28px; }
+.app-header h1 { font-size: 18px; margin: 0; font-weight: 600; }
+
+main { display: grid; grid-template-columns: 1fr; gap: 20px; padding: 20px; }
+
+section { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+section h2 { margin: 0 0 12px 0; font-size: 16px; }
+
+.description-input { display: grid; grid-template-columns: 120px 1fr; gap: 8px 12px; align-items: center; margin-bottom: 12px; }
+.description-input input { padding: 8px 10px; border-radius: 6px; border: 1px solid var(--border); background: #0b1220; color: var(--text); }
+
+.grid { display: grid; grid-template-columns: 1fr 140px 120px; gap: 8px 12px; align-items: center; }
+.label { align-self: center; color: var(--muted); }
+.input {
+  width: 120px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #0b1220;
+  color: var(--text);
+}
+.input:focus { outline: 2px solid #334155; border-color: #334155; }
+.input.error { outline: 2px solid var(--danger); border-color: var(--danger); }
+
+.actions { display: flex; gap: 10px; margin-top: 12px; }
+button {
+  background: #1f2937;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover { background: #243041; }
+button#btn-calc { border-color: #153a2a; background: #17392a; }
+button#btn-calc:hover { background: #1a3f2f; }
+
+.subtotal {
+  justify-self: end;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.report .meta { color: var(--muted); margin-bottom: 8px; }
+
+#breakdown { width: 100%; border-collapse: collapse; }
+#breakdown th, #breakdown td { border-bottom: 1px solid var(--border); padding: 8px; text-align: left; }
+#breakdown th { color: var(--muted); font-weight: 600; }
+#breakdown td:last-child { text-align: right; }
+
+.grand-total { margin-top: 12px; font-size: 18px; }
+
+.running-total .divider { color: var(--muted); margin: 0 8px; }
+
+/* Print report table (hidden on screen) */
+#print-report { display: none; }
+.report-table { width: 100%; border-collapse: collapse; }
+.report-table th, .report-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+.report-table th:last-child, .report-table td:last-child { text-align: right; }
+.report-header { margin: 6px 0 8px; }
+
+/* Print-only header default hidden on screen */
+.print-header { display: none; }
+
+/* Print-optimized styles */
+@media print {
+  @page { margin: 12mm; }
+
+  :root {
+    --bg: #ffffff;
+    --panel: #ffffff;
+    --text: #000000;
+    --muted: #000000;
+    --border: #000000;
+  }
+
+  body { background: #fff; color: #000; }
+  .app-header { display: none !important; }
+  .print-header { display: block !important; margin-bottom: 8mm; }
+  .actions, button { display: none !important; }
+  .inputs { display: none !important; }
+  #print-report { display: block !important; }
+  section { border: none; box-shadow: none; padding: 0; }
+  main { padding: 0; }
+  .grid { gap: 6px 12px; }
+  .label { color: #000; }
+  .input { background: #fff; color: #000; border: 1px solid #000; }
+  .input:focus { outline: none; }
+  .subtotal { color: #000; }
+  .running-total { margin-top: 10px; font-size: 22px; font-weight: 700; color: #000; }
+  .report-table th, .report-table td { border-bottom: 1px solid #000; }
+}

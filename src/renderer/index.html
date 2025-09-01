@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cash Counter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <img src="../assets/logo.svg" alt="Logo" class="logo" />
+    <h1>Cash Counting Application</h1>
+  </header>
+
+  <!-- Print-only header -->
+  <div class="print-header" aria-hidden="true">
+    <h1>Cash Counter</h1>
+    <div class="meta">Date/Time: <span id="print-timestamp"></span></div>
+  </div>
+
+  <main>
+    <section class="inputs">
+      <h2>Enter Counts</h2>
+      <div class="description-input">
+        <label for="description"><strong>Description</strong></label>
+        <input type="text" id="description" name="description" maxlength="250" placeholder="Enter a brief description (max 250 chars)" />
+      </div>
+      <form id="cash-form">
+        <div class="grid" id="denoms-grid"><!-- populated by JS --></div>
+        <div class="actions">
+          <button type="button" id="btn-print" accesskey="p" title="Ctrl+P">Print Report</button>
+          <button type="button" id="btn-export" accesskey="e" title="Ctrl+E">Export PDF</button>
+          <button type="button" id="btn-reset" title="Reset Counts">Reset</button>
+          <button type="button" id="btn-exit" title="Exit Application">Exit</button>
+        </div>
+        <div class="running-total">
+          Running Grand Total: <strong id="running-grand-total">$0.00</strong>
+          <span class="divider">·</span>
+          Total Items: <strong id="total-count">0</strong>
+        </div>
+      </form>
+    </section>
+
+    <!-- Print-only report content -->
+    <section id="print-report" aria-hidden="true">
+      <div class="report-header">
+        <div class="desc"><strong id="print-description"></strong></div>
+      </div>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Denomination</th>
+            <th>Qty</th>
+            <th>Subtotal</th>
+          </tr>
+        </thead>
+        <tbody id="print-rows"><!-- populated by JS --></tbody>
+        <tfoot>
+          <tr>
+            <td><strong>Total Items</strong></td>
+            <td id="print-total-count" colspan="1"></td>
+            <td id="print-grand-total"></td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+  </main>
+
+  <script src="../lib/calc.js"></script>
+  <script src="renderer.js"></script>
+</body>
+</html>
